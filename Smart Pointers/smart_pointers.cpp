@@ -20,14 +20,13 @@ public:
 	}
 };
 
-unique_ptr<vector<shared_ptr<Test>>> make();
+auto make();
 void fill(vector<shared_ptr<Test>>& vec, int num);
 void display(const vector<shared_ptr<Test>>& vec);
 
 
-unique_ptr<vector<shared_ptr<Test>>> make() {
-	auto vec = make_unique<vector<shared_ptr<Test>>>();
-	return vec;
+auto make() {
+	return make_unique<vector<shared_ptr<Test>>>();
 }
 
 void fill(vector<shared_ptr<Test>>& vec, int num) {
@@ -35,14 +34,13 @@ void fill(vector<shared_ptr<Test>>& vec, int num) {
 		cout << "Enter data point [" << i + 1 << "]: ";
 		int n;
 		cin >> n;
-		shared_ptr<Test>p = make_shared<Test>(n);
-		vec.push_back(p);
+		vec.push_back(make_shared<Test>(n));
 	}
 }
 
 void display(const vector<shared_ptr<Test>>& vec) {
 	cout << "===========================\n";
-	for (auto &v:vec) {
+	for (auto& v : vec) {
 		cout << v->get_data() << endl;
 	}
 	cout << "===========================\n";
